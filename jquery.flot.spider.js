@@ -258,16 +258,26 @@ THE SOFTWARE.
                 ctx.stroke();
             }
             function drawspiderLeg(ctx,j,startPoint,breakPoint,gridColor){
+                function getFontSize(ctx) {
+                    var fsize = 10;
+                    $.each(ctx.font.split(' '), function(i, o) {
+                        if(o.indexOf('px') == o.length - 2) {
+                            fsize = parseInt(o.substring(0, o.length - 2));
+                            return false;
+                        }
+                    });
+                    return fsize;
+                }
+                var fsize = getFontSize(ctx);
+                var delta = Math.ceil((fsize / 2) / maxRadius * 100);
                 var pos,metrics,extraX,extraY;
-                pos = calculateXY(cnt,j,100);
+                pos = calculateXY(cnt,j,100 + delta);
                 ctx.font = data[0].spider.legs.font;
                 ctx.fillStyle = data[0].spider.legs.fillStyle;
                 // based on patch created by Thomasz Janik
                 metrics = ctx.measureText(data[0].spider.legs.data[j].label);
-                if(pos.y > startPoint.y){ extraY = 15;} else{ extraY = -15;}
-                if(between(pos.y,startPoint.y+10,startPoint.y-10)){ extraY = 0;}
-                if(pos.x < breakPoint.x){ extraX = (metrics.width*-1)-metrics.width/2;}else{ extraX = 0;}
-                if(between(pos.x,startPoint.x+10,startPoint.x-10)) { extraX = metrics.width/2; }
+                if(pos.y > centerTop){ extraY = fsize;} else{ extraY = 0;}
+                if(pos.x < centerLeft){ extraX = (metrics.width*-1);}else{ extraX = 0;}
                 ctx.fillText(data[0].spider.legs.data[j].label, pos.x + extraX, pos.y + extraY);
             }
         }
@@ -363,7 +373,6 @@ THE SOFTWARE.
             }
         }
     }
-    var between = $.plot.JUMlib.library.between;
     $.plot.plugins.push({
         init: init,
         options: options,
