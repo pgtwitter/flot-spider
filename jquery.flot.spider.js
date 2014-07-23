@@ -136,9 +136,9 @@ THE SOFTWARE.
             ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
         }
         function setupspider(ctx){
-            maxRadius =  Math.min(ctx.canvas.width,ctx.canvas.height)/2 * data[0].spider.spiderSize;
             centerTop = (ctx.canvas.height/2);
-            centerLeft = centerTop;
+            centerLeft = (ctx.canvas.width/2);
+            maxRadius =  Math.min(centerTop, centerLeft) * data[0].spider.spiderSize;
         }
         function drawspiderPoints(ctx,cnt,serie,opt){
             for(var j = 0; j < serie.data.length; j++) { drawspiderPoint(ctx,cnt,serie,j,opt); }
@@ -252,7 +252,7 @@ THE SOFTWARE.
                 ctx.beginPath();
                 ctx.lineWidth = options.series.spider.lineWidth;
                 ctx.strokeStyle = options.series.spider.lineStyle;
-                ctx.moveTo(centerTop, centerLeft);
+                ctx.moveTo(centerLeft, centerTop);
                 pos = calculateXY(cnt,j,100);
                 ctx.lineTo(pos.x, pos.y);
                 ctx.stroke();
