@@ -276,8 +276,8 @@ THE SOFTWARE.
                 ctx.fillStyle = data[0].spider.legs.fillStyle;
                 // based on patch created by Thomasz Janik
                 metrics = ctx.measureText(data[0].spider.legs.data[j].label);
-                if(pos.y > centerTop){ extraY = fsize;} else{ extraY = 0;}
-                if(pos.x < centerLeft){ extraX = (metrics.width*-1);}else{ extraX = 0;}
+                extraY= (pos.y < centerTop) ? 0 : (pos.y > centerTop) ? fsize : fsize / 2;
+                extraX= (pos.x > centerLeft) ? 0 : (pos.x < centerLeft) ? (metrics.width * -1) : (metrics.width * -1) / 2;
                 ctx.fillText(data[0].spider.legs.data[j].label, pos.x + extraX, pos.y + extraY);
             }
         }
