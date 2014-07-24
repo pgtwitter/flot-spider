@@ -74,7 +74,7 @@ THE SOFTWARE.
         function processOptions(plot,options){
             if(options.series.spider.active){
                 $.extend(true,options,replaceOptions);
-                $.plot.JUMlib.data.extendEmpty(options,defaultOptions);
+                options=$.extend(true,{},defaultOptions,options);
                 opt = options;
                 plot.hooks.processRawData.push(processRawData);
                 plot.hooks.draw.push(draw);
