@@ -128,8 +128,8 @@ THE SOFTWARE.
             }
             min = min * data[0].spider.legs.legScaleMin;
             max = max * data[0].spider.legs.legScaleMax;
-            if(opt.series.spider.legMin){ min = opt.series.spider.legMin;}
-            if(opt.series.spider.legMax){ max = opt.series.spider.legMax;}
+            if(opt.series.spider.legMin != null){ min = opt.series.spider.legMin;}
+            if(opt.series.spider.legMax != null){ max = opt.series.spider.legMax;}
             return {min: min, max:max, range: max - min};			
         }
         function clear(ctx){
