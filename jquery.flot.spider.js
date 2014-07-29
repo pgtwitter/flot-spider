@@ -41,8 +41,8 @@ THE SOFTWARE.
                 legs: {
                     font: "20px Times New Roman",
                     fillStyle: "Black",
-                    legScaleMin: 0.95,
-                    legScaleMax: 1.05,
+                    legScaleMin: 1.,
+                    legScaleMax: 1.,
                     legStartAngle: 0 
                 }
             }
